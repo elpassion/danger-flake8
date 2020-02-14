@@ -28,5 +28,5 @@ def test_lint_run_flake8_subprocess(danger: Danger):
             message="W391 blank line at end of file",
             file_name="danger_flake8/plugin.py",
             line=11,
-        )
+        ),
     ]
