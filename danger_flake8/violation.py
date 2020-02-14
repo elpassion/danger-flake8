@@ -1,7 +1,6 @@
 from typing import List, Optional
 
 from danger_python.danger import Violation
-import subprocess
 
 
 def violations(text_violations: str) -> List[Violation]:
@@ -19,6 +18,3 @@ def violation(text_violation: str) -> Optional[Violation]:
     line = text_violation.split(":")[1]
     print(f"message: {message}, filename: {file_name}, line: {line}")
     return Violation(message=message, file_name=file_name, line=line)
-
-
-
