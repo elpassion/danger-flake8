@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/elpassion/danger-flake8.svg?branch=master)](https://travis-ci.com/elpassion/danger-flake8)
+
 # danger-flake8
 
 Danger python plugin for displaying flake8 lint results
