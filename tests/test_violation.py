@@ -37,3 +37,5 @@ def test_empty_output():
     violations_list = violations(output)
 
     assert violations_list == []
+
+
