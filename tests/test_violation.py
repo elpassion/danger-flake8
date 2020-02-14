@@ -57,3 +57,5 @@ def test_violations_not_in_touched_files():
     violations_list = violations(output, set())
 
     assert violations_list == []
+
+
