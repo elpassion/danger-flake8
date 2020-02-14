@@ -17,6 +17,7 @@ def violation(text_violation: str) -> Optional[Violation]:
     message = text_violation.split(":")[3][1:]
     file_name = text_violation.split(":")[0][2:]
     line = text_violation.split(":")[1]
+    print(f"message: {message}, filename: {file_name}, line: {line}")
     return Violation(message=message, file_name=file_name, line=line)
 
 
