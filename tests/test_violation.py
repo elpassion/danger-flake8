@@ -3,37 +3,57 @@ from danger_python.danger import Violation
 from danger_flake8.violation import violations
 
 
-def test_not_empty_output():
+def test_empty_output():
+    output = ""
+
+    violations_list = violations(output, set())
+
+    assert violations_list == []
+
+
+def test_violations_in_touched_files():
     output = (
-        "./danger_flake8/plugin.py:2:1: F811 redefinition of unused 'DangerPlugin' from line 1\n"
-        "./danger_flake8/plugin.py:6:1: E303 too many blank lines (3)\n"
-        "./danger_flake8/plugin.py:11:1: W391 blank line at end of file\n"
+        "./danger_flake8/plugin.py:7:1: F401 'profile' imported but unused\n"
+        "./danger_flake8/plugin.py:18:1: W391 blank line at end of file\n"
+        "./tests/test_violation.py:5:1: F401 'profile' imported but unused\n"
+        "./tests/test_violation.py:7:1: E302 expected 2 blank lines, found 1\n"
+        "./tests/test_violation.py:42:1: W391 blank line at end of file\n"
+        "./danger_flake8/violation.py:21:1: W391 blank line at end of file\n"
     )
 
-    violations_list = violations(output)
+    touched_files = {"danger_flake8/plugin.py", "danger_flake8/violation.py"}
+
+    violations_list = violations(output, touched_files)
 
     assert violations_list == [
         Violation(
-            message="F811 redefinition of unused 'DangerPlugin' from line 1",
+            message="F401 'profile' imported but unused",
             file_name="danger_flake8/plugin.py",
-            line=2,
-        ),
-        Violation(
-            message="E303 too many blank lines (3)",
-            file_name="danger_flake8/plugin.py",
-            line=6,
+            line=7,
         ),
         Violation(
             message="W391 blank line at end of file",
             file_name="danger_flake8/plugin.py",
-            line=11,
+            line=18,
+        ),
+        Violation(
+            message="W391 blank line at end of file",
+            file_name="danger_flake8/violation.py",
+            line=21,
         ),
     ]
 
 
-def test_empty_output():
-    output = ""
+def test_violations_not_in_touched_files():
+    output = (
+        "./danger_flake8/plugin.py:7:1: F401 'profile' imported but unused\n"
+        "./danger_flake8/plugin.py:18:1: W391 blank line at end of file\n"
+        "./tests/test_violation.py:5:1: F401 'profile' imported but unused\n"
+        "./tests/test_violation.py:7:1: E302 expected 2 blank lines, found 1\n"
+        "./tests/test_violation.py:42:1: W391 blank line at end of file\n"
+        "./danger_flake8/violation.py:21:1: W391 blank line at end of file\n"
+    )
 
-    violations_list = violations(output)
+    violations_list = violations(output, set())
 
     assert violations_list == []
