@@ -101,10 +101,9 @@ click-default-group = "^1.2.2"
 pydantic = "^1.4"
 
 [package.source]
-reference = "28b4f1f5e33e5f744ccd690ee224fd8760bc5322"
+reference = "e7f15d2ac768306cd9d3ed1dfb56a944fa3f3c42"
 type = "git"
 url = "https://github.com/danger/python.git"
-
 [[package]]
 category = "dev"
 description = "Pythonic argument parser, that will make you smile"
@@ -438,7 +437,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "04dbf5414925aca991b8d54408dda8e9658fa47ede5a3fd1a34977337e35952e"
+content-hash = "75766f11ad7a7614f339a6528f47c96a62b6b2e7bcf98fb35de07a9fa41b2491"
 python-versions = "^3.7"
 
 [metadata.files]
