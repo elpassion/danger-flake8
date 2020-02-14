@@ -1,12 +1,14 @@
 from unittest.mock import patch
 
+import pytest
 from danger_python.danger import Danger, Violation
 from testfixtures.popen import MockPopen
 
 from danger_flake8 import DangerFlake8
 
 
-def test_lint_run_flake8_subprocess(danger: Danger):
+@pytest.mark.parametrize("modified_files", [["danger_flake8/plugin.py"]])
+def test_lint_modified_files(danger: Danger):
     with open("tests/fixtures/flake8_output") as fixture:
         with patch("subprocess.Popen", new_callable=MockPopen) as popen:
             popen.set_command("flake8", stdout=fixture.read().encode("utf-8"))
@@ -30,3 +32,47 @@ def test_lint_run_flake8_subprocess(danger: Danger):
             line=11,
         ),
     ]
+
+
+def test_lint_warnings_not_in_touched_files(danger: Danger):
+    with open("tests/fixtures/flake8_output") as fixture:
+        with patch("subprocess.Popen", new_callable=MockPopen) as popen:
+            popen.set_command("flake8", stdout=fixture.read().encode("utf-8"))
+            plugin = DangerFlake8()
+            plugin.lint()
+
+    assert danger.results.warnings == []
+
+
+@pytest.mark.parametrize("created_files", [["tests/test_violation.py"]])
+@pytest.mark.parametrize("modified_files", [["danger_flake8/violation.py"]])
+def test_lint_touched_files(danger: Danger):
+    with open("tests/fixtures/flake8_output") as fixture:
+        with patch("subprocess.Popen", new_callable=MockPopen) as popen:
+            popen.set_command("flake8", stdout=fixture.read().encode("utf-8"))
+            plugin = DangerFlake8()
+            plugin.lint()
+
+    assert danger.results.warnings == [
+        Violation(
+            message="W391 blank line at end of file",
+            file_name="danger_flake8/violation.py",
+            line=21,
+        ),
+        Violation(
+            message="F401 'profile' imported but unused",
+            file_name="tests/test_violation.py",
+            line=5,
+        ),
+    ]
+
+
+@pytest.mark.parametrize("deleted_files", [["danger_flake8/violation.py"]])
+def test_lint_deleted_files(danger: Danger):
+    with open("tests/fixtures/flake8_output") as fixture:
+        with patch("subprocess.Popen", new_callable=MockPopen) as popen:
+            popen.set_command("flake8", stdout=fixture.read().encode("utf-8"))
+            plugin = DangerFlake8()
+            plugin.lint()
+
+    assert danger.results.warnings == []

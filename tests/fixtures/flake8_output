@@ -1,3 +1,5 @@
 ./danger_flake8/plugin.py:2:1: F811 redefinition of unused 'DangerPlugin' from line 1
 ./danger_flake8/plugin.py:6:1: E303 too many blank lines (3)
 ./danger_flake8/plugin.py:11:1: W391 blank line at end of file
+./danger_flake8/violation.py:21:1: W391 blank line at end of file
+./tests/test_violation.py:5:1: F401 'profile' imported but unused

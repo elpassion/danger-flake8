@@ -1,17 +1,17 @@
-from typing import List, Optional
+from typing import List, Optional, Set
 
 from danger_python.danger import Violation
 
 
-def violations(text_violations: str) -> List[Violation]:
-    if not text_violations.split():
+def violations(text_violations: str, touched_files: Set[str]) -> List[Violation]:
+    if not text_violations:
         return []
-    results = list(map(violation, text_violations.split("\n")))
-    return list(filter(None, results))
+    violations_list = filter(None, map(violation, text_violations.split("\n")))
+    return list(filter(lambda x: x.file_name in touched_files, violations_list))
 
 
 def violation(text_violation: str) -> Optional[Violation]:
-    if not text_violation.split():
+    if not text_violation:
         return
     message = text_violation.split(":")[3][1:]
     file_name = text_violation.split(":")[0][2:]
