@@ -1,5 +1,4 @@
 from unittest.mock import patch
-import profile
 
 import pytest
 from danger_python.danger import Danger, Violation
