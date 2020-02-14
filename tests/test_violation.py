@@ -6,7 +6,7 @@ from danger_flake8.violation import violations
 def test_empty_output():
     output = ""
 
-    violations_list = violations(output, set())
+    violations_list = violations(output, {"danger_flake8/violation.py"})
 
     assert violations_list == []
 
