@@ -3,7 +3,7 @@ from danger_python.danger import Violation
 from danger_flake8.violation import violations
 
 
-def test_violations_from_output():
+def test_not_empty_output():
     output = (
         "./danger_flake8/plugin.py:2:1: F811 redefinition of unused 'DangerPlugin' from line 1\n"
         "./danger_flake8/plugin.py:6:1: E303 too many blank lines (3)\n"
@@ -31,7 +31,7 @@ def test_violations_from_output():
     ]
 
 
-def test_empty_violations():
+def test_empty_output():
     output = ""
 
     violations_list = violations(output)
