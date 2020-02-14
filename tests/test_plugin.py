@@ -43,7 +43,6 @@ def test_lint_warnings_not_in_touched_files(danger: Danger):
 
     assert danger.results.warnings == []
 
-
 @pytest.mark.parametrize("created_files", [["tests/test_violation.py"]])
 @pytest.mark.parametrize("modified_files", [["danger_flake8/violation.py"]])
 def test_lint_touched_files(danger: Danger):

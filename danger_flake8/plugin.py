@@ -1,4 +1,5 @@
 import subprocess
+import profile
 
 from danger_python.plugins import DangerPlugin
 
