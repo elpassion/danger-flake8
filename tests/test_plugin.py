@@ -65,3 +65,14 @@ def test_lint_touched_files(danger: Danger):
             line=5,
         ),
     ]
+
+
+@pytest.mark.parametrize("deleted_files", [["danger_flake8/violation.py"]])
+def test_lint_deleted_files(danger: Danger):
+    with open("tests/fixtures/flake8_output") as fixture:
+        with patch("subprocess.Popen", new_callable=MockPopen) as popen:
+            popen.set_command("flake8", stdout=fixture.read().encode("utf-8"))
+            plugin = DangerFlake8()
+            plugin.lint()
+
+    assert danger.results.warnings == []
