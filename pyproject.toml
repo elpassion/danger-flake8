@@ -3,8 +3,8 @@ name = "danger-flake8"
 version = "0.1.0"
 description = "Danger plugin to display flake8 lint result"
 authors = [
-	"Maciej Gomolka <maciej.gomolka@elpassion.pl>", 
-	"Jakub Turek <jkbturek@gmail.com>",
+    "Maciej Gomolka <maciej.gomolka@elpassion.pl>", 
+    "Jakub Turek <jkbturek@gmail.com>",
     "EL Passion <hello@elpassion.com>"
 ]
 license = "MIT"
