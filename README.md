@@ -4,14 +4,13 @@ Danger python plugin for displaying flake8 lint results
 
 <h3 align="center">
   <a href="https://www.elpassion.com">
-    <img src="/assets/readme/elpassion.png" alt="Find your EL Passion"/>
+    <img src=".screenshots/header.png" alt="Find your EL Passion"/>
   </a>
 </h3>
 
-
 ## Example output
 
-![](../.screenshots/1.png)
+![](.screenshots/1.png)
 
 ## Installation
 
