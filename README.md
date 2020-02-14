@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/elpassion/danger-flake8.svg?branch=master)](https://travis-ci.com/elpassion/danger-flake8)
+[![PyPI](https://img.shields.io/pypi/v/danger-py-cov)](https://pypi.org/project/danger-py-cov/)
+![Python versions](https://img.shields.io/pypi/pyversions/danger-py-cov)
 
 # danger-flake8
 
