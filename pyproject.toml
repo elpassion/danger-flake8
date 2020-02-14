@@ -2,7 +2,10 @@
 name = "danger-flake8"
 version = "0.1.0"
 description = "Danger plugin to display flake8 lint result"
-authors = ["Your Name <you@example.com>"]
+authors = [
+	"Maciej Gomolka <maciej.gomolka@elpassion.pl>", 
+	"Jakub Turek <jakub.turek@elpassion.pl>"
+]
 license = "MIT"
 
 [tool.poetry.dependencies]
